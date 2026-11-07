@@ -51,13 +51,13 @@ ghcr.io/ferilee/vokara-api:latest
 ghcr.io/ferilee/vokara-web:latest
 ```
 
-URL API web dikonfigurasi pada GitHub repository variable bernama `VITE_API_URL` dengan nilai:
+URL API web menggunakan GitHub repository variable `VITE_API_URL`. Jika variable belum dibuat, workflow memakai fallback:
 
 ```text
 https://vokara-api.smkpasirian-lmj.sch.id
 ```
 
-Nilai ini dibake ke image web saat GitHub Actions berjalan. Perubahan URL API memerlukan build image baru.
+Nilai ini dibake ke image web saat GitHub Actions berjalan. Perubahan URL API memerlukan build image baru. Repository variable tetap disarankan jika URL berubah antar-environment.
 
 ## Akses GHCR
 
