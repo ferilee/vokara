@@ -1,0 +1,19 @@
+{
+  "name": "@vokara/api",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vokara/database": "workspace:*",
+    "hono": "^4.9.7"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.0"
+  },
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "db:backup": "bun src/backup.ts backup",
+    "db:restore": "bun src/backup.ts restore",
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

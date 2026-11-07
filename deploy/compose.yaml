@@ -1,0 +1,30 @@
+name: vokara
+
+services:
+  vokara-api:
+    container_name: vokara-api
+    image: ghcr.io/${GHCR_NAMESPACE:?GHCR_NAMESPACE harus diisi}/vokara-api:${IMAGE_TAG:-latest}
+    pull_policy: always
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      DATABASE_URL: /data/vokara.sqlite
+      CORS_ORIGIN: ${CORS_ORIGIN:?CORS_ORIGIN harus diisi}
+    volumes:
+      - ${VOKARA_DATA_DIR:-/srv/data/vokara/sqlite}:/data
+    networks:
+      - ferileenet
+    restart: unless-stopped
+
+  vokara-web:
+    container_name: vokara-web
+    image: ghcr.io/${GHCR_NAMESPACE:?GHCR_NAMESPACE harus diisi}/vokara-web:${IMAGE_TAG:-latest}
+    pull_policy: always
+    networks:
+      - ferileenet
+    restart: unless-stopped
+
+networks:
+  ferileenet:
+    external: true
+    name: ferileenet

@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+dist
+apps/api/data
+apps/web/dist
+backups
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+strukturfile.md
