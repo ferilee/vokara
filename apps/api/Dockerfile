@@ -5,11 +5,13 @@ WORKDIR /app
 COPY package.json bun.lock tsconfig.base.json ./
 COPY apps/api/package.json apps/api/package.json
 COPY apps/web/package.json apps/web/package.json
+COPY packages/activity-sdk/package.json packages/activity-sdk/package.json
 COPY packages/database/package.json packages/database/package.json
 
 RUN bun install --frozen-lockfile
 
 COPY apps/api apps/api
+COPY packages/activity-sdk packages/activity-sdk
 COPY packages/database packages/database
 
 ENV NODE_ENV=production
