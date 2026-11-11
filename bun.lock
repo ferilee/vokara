@@ -11,6 +11,7 @@
     "apps/api": {
       "name": "@vokara/api",
       "dependencies": {
+        "@vokara/activity-sdk": "workspace:*",
         "@vokara/database": "workspace:*",
         "hono": "^4.9.7",
       },
@@ -21,6 +22,7 @@
     "apps/web": {
       "name": "@vokara/web",
       "dependencies": {
+        "@vokara/activity-sdk": "workspace:*",
         "@vitejs/plugin-react": "^5.0.4",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
@@ -39,6 +41,9 @@
       "devDependencies": {
         "@types/bun": "^1.3.0",
       },
+    },
+    "packages/activity-sdk": {
+      "name": "@vokara/activity-sdk",
     },
   },
   "packages": {
@@ -217,6 +222,8 @@
     "@vitejs/plugin-react": ["@vitejs/plugin-react@5.2.0", "", { "dependencies": { "@babel/core": "^7.29.0", "@babel/plugin-transform-react-jsx-self": "^7.27.1", "@babel/plugin-transform-react-jsx-source": "^7.27.1", "@rolldown/pluginutils": "1.0.0-rc.3", "@types/babel__core": "^7.20.5", "react-refresh": "^0.18.0" }, "peerDependencies": { "vite": "^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0" } }, "sha512-YmKkfhOAi3wsB1PhJq5Scj3GXMn3WvtQ/JC0xoopuHoXSdmtdStOpFrYaT1kie2YgFBcIe64ROzMYRjCrYOdYw=="],
 
     "@vokara/api": ["@vokara/api@workspace:apps/api"],
+
+    "@vokara/activity-sdk": ["@vokara/activity-sdk@workspace:packages/activity-sdk"],
 
     "@vokara/database": ["@vokara/database@workspace:packages/database"],
 

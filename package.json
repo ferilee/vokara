@@ -11,10 +11,14 @@
     "dev:api": "bun --cwd apps/api dev",
     "build": "bun run build:web",
     "build:web": "bun --cwd apps/web build",
-    "typecheck": "bun run typecheck:web && bun run typecheck:api && bun run typecheck:database",
+    "test": "bun run test:api && bun run test:activity",
+    "test:api": "bun --cwd apps/api test",
+    "test:activity": "bun --cwd packages/activity-sdk test",
+    "typecheck": "bun run typecheck:web && bun run typecheck:api && bun run typecheck:database && bun run typecheck:activity",
     "typecheck:web": "bun --cwd apps/web typecheck",
     "typecheck:api": "bun --cwd apps/api typecheck",
-    "typecheck:database": "bun --cwd packages/database typecheck"
+    "typecheck:database": "bun --cwd packages/database typecheck",
+    "typecheck:activity": "bun --cwd packages/activity-sdk typecheck"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

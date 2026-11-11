@@ -1,6 +1,6 @@
 # 002 — Katalog aktivitas dan kuis tracer
 
-**Status:** proposed  
+**Status:** in progress
 **Prioritas:** P0  
 **Owner:** Agent konten
 
@@ -23,23 +23,60 @@ Sebagai guru, saya dapat menemukan satu kuis matematika di katalog, meninjaunya,
 
 ## Acceptance criteria
 
-- [ ] Definition, konfigurasi valid dan tidak valid, serta capability kuis divalidasi pada frontend dan backend.
-- [ ] Katalog hanya menampilkan aktivitas yang berstatus tersedia untuk pilot.
-- [ ] Guru dapat membuka detail kuis dan memulai aktivitas dari sana.
-- [ ] Siswa atau pengguna dapat memilih satu jawaban melalui kontrol sentuh yang layak.
-- [ ] Kuis menghitung benar/salah dan memberi umpan balik sesuai konfigurasi.
-- [ ] Runtime menolak versi, aset, atau konfigurasi yang tidak kompatibel dengan pesan yang dapat ditindaklanjuti.
+- [x] Definition, konfigurasi valid dan tidak valid, serta capability kuis divalidasi pada frontend dan backend.
+- [x] Katalog hanya menampilkan aktivitas yang berstatus tersedia untuk pilot.
+- [x] Guru dapat membuka detail kuis dan memulai aktivitas dari sana.
+- [x] Siswa atau pengguna dapat memilih satu jawaban melalui kontrol sentuh yang layak.
+- [x] Kuis menghitung benar/salah dan memberi umpan balik sesuai konfigurasi.
+- [x] Runtime menolak versi atau konfigurasi yang tidak kompatibel dengan pesan yang dapat ditindaklanjuti; kuis tracer tidak memiliki aset eksternal.
 - [ ] Alur katalog sampai jawaban diuji pada IFP dan HP serta memiliki pengujian otomatis untuk validasi dan penilaian kuis.
 
 ## Blocked by
 
-- [ ] Issue 001 — Fondasi, cloud baseline, dan perangkat
+- [x] Issue 001 — Fondasi, cloud baseline, dan perangkat
 
 ## Referensi
 
 - `docs/03-content/activity-model.md`
 - `docs/05-architecture/activity-sdk.md`
 - `docs/03-content/content-authoring.md`
+
+## Progress implementasi
+
+- [x] Package `@vokara/activity-sdk` dengan definition, konfigurasi kuis, capability, versioning, dan validator.
+- [x] Fixture kuis tracer Aljabar Dasar dengan empat opsi dan satu jawaban benar.
+- [x] Endpoint `GET /api/activities` hanya mengembalikan aktivitas `published` yang lolos validasi.
+- [x] Endpoint `GET /api/activities/:id` mengembalikan definition dan konfigurasi versi aktivitas.
+- [x] Frontend memiliki alur katalog → detail → runtime kuis.
+- [x] Kontrol jawaban menggunakan target sentuh dan feedback benar/salah.
+- [x] Test validator SDK: konfigurasi valid, opsi kurang, dan schema tidak kompatibel.
+- [x] Test API: katalog published, detail aktivitas, health, dan error aman.
+- [ ] Uji alur katalog sampai feedback pada IFP dan minimal satu HP di deployment pilot.
+
+## Checklist pengujian HP pilot
+
+Gunakan image GHCR terbaru setelah GitHub Actions selesai dan Arcane sudah Pull/Redeploy.
+
+- [ ] Buka `https://vokara.smkpasirian-lmj.sch.id` pada HP.
+- [ ] Status menunjukkan `API terhubung`.
+- [ ] Katalog menampilkan `Kuis Tracer Aljabar Dasar`.
+- [ ] Detail aktivitas menampilkan tujuan belajar, capability, dan versi `1.0.0`.
+- [ ] Tombol `Mulai kuis` dapat ditekan melalui touch.
+- [ ] Empat pilihan jawaban tampil dan dapat dipilih.
+- [ ] Jawaban benar menampilkan feedback benar.
+- [ ] Jawaban salah menampilkan feedback perbaikan.
+- [ ] Tombol kembali dan selesai dapat digunakan.
+- [ ] Screenshot atau catatan hasil disimpan bersama model HP, browser, viewport, touch points, dan waktu pengujian.
+
+## Bukti validasi lokal
+
+```text
+bun run typecheck  → berhasil
+bun run build      → berhasil
+bun run test       → 7 test berhasil, 0 gagal
+```
+
+Test mencakup validasi konfigurasi, schema compatibility, katalog published, detail aktivitas, startup runtime, health check, migration idempotent, dan error 404 aman.
 
 ## Implementation packet
 

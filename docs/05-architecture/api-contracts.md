@@ -2,7 +2,7 @@
 
 **Status:** proposed  
 **Pemilik:** tim proyek Vokara  
-**Terakhir diperbarui:** 2026-10-17
+**Terakhir diperbarui:** 2026-11-10
 
 Dokumen ini menetapkan aturan awal untuk API HTTP. Endpoint dan payload final perlu diturunkan dari model domain, aturan akses, dan kebutuhan frontend.
 
@@ -29,7 +29,7 @@ Dokumen ini menetapkan aturan awal untuk API HTTP. Endpoint dan payload final pe
 | `GET /api/sessions/:id/results` | Mengambil rekap hasil sesuai izin. |
 | `POST /api/sync` | Menerima batch item outbox. |
 
-Endpoint ini adalah rancangan awal. Nama, parameter, payload, status response, pagination, dan filter belum menjadi kontrak final.
+Untuk issue 002, `GET /api/activities` mengembalikan `{ activities: ActivityDefinition[] }` dan hanya memasukkan aktivitas `published` yang lolos validator Activity SDK. `GET /api/activities/:id` mengembalikan `{ definition, config }` untuk aktivitas yang sama. Endpoint lain tetap merupakan rancangan awal.
 
 ## Konvensi response
 

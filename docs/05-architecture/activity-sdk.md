@@ -4,6 +4,8 @@
 **Pemilik:** tim proyek Vokara  
 **Terakhir diperbarui:** 2026-10-17
 
+Implementasi MVP saat ini berada pada package `packages/activity-sdk`. Kontrak yang sudah dipakai issue 002 mencakup `ActivityDefinition`, `QuizConfig`, `ActivityRecord`, dan validator definition/configuration.
+
 ## Tujuan
 
 Activity SDK adalah kontrak bersama untuk membuat, memuat, menjalankan, memvalidasi, dan menyimpan hasil aktivitas. SDK menjaga agar aktivitas baru dapat ditambahkan tanpa membangun ulang katalog, sesi kelas, offline layer, dan rekap.

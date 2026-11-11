@@ -1,6 +1,8 @@
 import { Database } from "bun:sqlite";
 import { cors } from "hono/cors";
 import { Hono } from "hono";
+import { validateActivity } from "@vokara/activity-sdk";
+import { activityCatalog } from "./catalog";
 
 type AppEnv = {
   Variables: {
@@ -10,6 +12,9 @@ type AppEnv = {
 
 export function createApp(database: Database) {
   const app = new Hono<AppEnv>();
+  const publishedActivities = activityCatalog.filter(
+    (activity) => activity.definition.status === "published" && validateActivity(activity).valid,
+  );
 
   app.use(
     "*",
@@ -43,6 +48,27 @@ export function createApp(database: Database) {
         503,
       );
     }
+  });
+
+  app.get("/api/activities", (context) =>
+    context.json({
+      activities: publishedActivities.map(({ definition }) => definition),
+    }),
+  );
+
+  app.get("/api/activities/:id", (context) => {
+    const activity = publishedActivities.find(
+      ({ definition }) => definition.id === context.req.param("id"),
+    );
+
+    if (!activity) {
+      return context.json(
+        { error: "activity_not_found", message: "Aktivitas tidak ditemukan." },
+        404,
+      );
+    }
+
+    return context.json(activity);
   });
 
   app.notFound((context) =>

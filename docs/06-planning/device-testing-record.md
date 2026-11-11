@@ -49,6 +49,16 @@ Isi satu bagian untuk setiap perangkat yang benar-benar diuji. Jangan mengisi ha
 
 Nilai hasil yang diperbolehkan: **Lulus**, **Lulus dengan batasan**, **Gagal**, atau **Belum diuji**.
 
+## Bukti yang sudah diterima
+
+| Perangkat | Viewport | Browser | Touch points | Jaringan | API | Bukti |
+| --- | --- | --- | ---: | --- | --- | --- |
+| HP pilot 1 | 396 × 764 px | Firefox | 5 | Terhubung | Terhubung | Screenshot pengguna |
+| Redmi Note 7 pilot 2 | 384 × 779 px | Chrome/Chromium | 5 | Terhubung | Terhubung | Android 10; RAM 6 GB; MIUI Global 12.5.3; storage 0% terpakai; screenshot pengguna |
+| IFP Merah Putih pilot 1 | 1280 × 552 px | Chrome/Chromium | 1 | Terhubung | Terhubung | Screenshot pengguna |
+
+Inventaris Redmi Note 7: model perangkat `M1901F7E`, Android `10`, RAM `6 GB`, CPU octa-core hingga `2.20 GHz`, dan MIUI Global `12.5.3`.
+
 ## Keputusan dukungan
 
 - [ ] Didukung untuk pilot.

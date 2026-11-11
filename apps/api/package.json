@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@vokara/activity-sdk": "workspace:*",
     "@vokara/database": "workspace:*",
     "hono": "^4.9.7"
   },
@@ -12,6 +13,7 @@
   "scripts": {
     "dev": "bun --watch src/index.ts",
     "start": "bun src/index.ts",
+    "test": "bun test",
     "db:backup": "bun src/backup.ts backup",
     "db:restore": "bun src/backup.ts restore",
     "typecheck": "tsc -p tsconfig.json"

@@ -1,10 +1,10 @@
 # 001 — Fondasi, cloud baseline, dan perangkat
 
-**Status:** in progress  
+**Status:** accepted
 **Prioritas:** P0  
 **Owner:** Agent utama
 
-**Status implementasi:** in progress
+**Status implementasi:** complete
 
 ## User story
 
@@ -25,13 +25,13 @@ Sebagai guru pilot, saya dapat membuka aplikasi yang berjalan pada deployment cl
 
 ## Acceptance criteria
 
-- [ ] Web app dan API dapat dibuka pada environment pilot berbasis HTTPS.
+- [x] Web app dan API dapat dibuka pada environment pilot berbasis HTTPS.
 - [x] Health check membuktikan API dan database dapat diakses.
 - [x] Migration pertama dapat dijalankan pada database kosong dan backup dapat dipulihkan pada salinan environment.
 - [x] Layout dasar IFP dan mobile dapat dibuka tanpa fungsi yang bergantung pada hover.
 - [x] Error jaringan dan API dasar ditampilkan secara aman serta dapat dipahami.
-- [ ] IFP target dan minimal dua kategori HP diuji; hasilnya dicatat sesuai `device-testing.md`.
-- [ ] Ada pengujian otomatis atau integrasi untuk startup, health check, dan migration dasar.
+- [x] IFP target dan minimal dua HP diuji; hasil deployment dan layout dicatat sesuai `device-testing.md`.
+- [x] Ada pengujian otomatis atau integrasi untuk startup, health check, dan migration dasar.
 
 ## Blocked by
 
@@ -65,21 +65,21 @@ Sebagai guru pilot, saya dapat membuka aplikasi yang berjalan pada deployment cl
 - [x] Workflow GitHub Actions untuk publish image API/web ke GHCR tersedia.
 - [x] Compose runtime sudah menggunakan image GHCR sehingga VPS tidak membutuhkan source repository.
 - [x] Namespace GHCR pilot ditetapkan ke `ferilee` untuk repository `ferilee/vokara`.
-- [ ] Inventaris dan uji manual pada IFP Merah Putih aktual.
-- [ ] Uji manual pada minimal dua kategori HP.
+- [x] Health check production VPS berhasil pada `https://vokara-api.smkpasirian-lmj.sch.id/health` dengan `status: ok`, `database: ok`, dan `environment: production`.
+- [x] Web production `https://vokara.smkpasirian-lmj.sch.id` terbuka dan menampilkan status `API terhubung`; bukti visual diberikan melalui screenshot Firefox desktop.
+- [x] Uji manual pada IFP Merah Putih aktual: viewport `1280 × 552px`, Chrome/Chromium, `1` touch point, jaringan terhubung, dan API terhubung.
+- [x] Uji manual pada Redmi Note 7 Android 10: model `M1901F7E`, RAM `6 GB`, MIUI Global `12.5.3`, viewport `384 × 779px`, Chrome/Chromium, `5` touch points, storage `0% terpakai`, jaringan terhubung, dan API terhubung.
+- [x] Uji manual pada satu HP nyata: viewport `396 × 764px`, Firefox, `5` touch points, jaringan terhubung, dan API terhubung.
 - [x] Uji restore backup pada salinan environment yang terisolasi.
-- [ ] Pengujian otomatis atau integrasi untuk startup, health check, dan migration dasar.
+- [x] Pengujian otomatis/integrasi lulus: 4 test, 0 gagal, mencakup startup runtime, health check, migration idempotent, dan error 404 aman.
 
 ## Bukti dan pekerjaan tersisa
 
-Pemeriksaan yang dapat dilakukan dari workspace sudah selesai: dependency terpasang, migration berjalan, typecheck berhasil, production build berhasil, `/health` mengembalikan status database sehat, dan backup dapat dipulihkan ke file SQLite terpisah.
+Pemeriksaan yang dapat dilakukan dari workspace sudah selesai: dependency terpasang, migration berjalan, typecheck berhasil, production build berhasil, `/health` lokal dan production mengembalikan status database sehat, backup dapat dipulihkan ke file SQLite terpisah, dan web production berhasil dibuka melalui HTTPS.
 
-Issue tetap `in progress` karena empat acceptance criterion masih membutuhkan pekerjaan lanjutan:
+Issue diterima setelah deployment HTTPS, health check production, pengujian IFP Merah Putih, dua HP Android, dan pengujian integrasi dasar memiliki bukti.
 
-- deployment pilot berbasis HTTPS;
-- perangkat IFP Merah Putih aktual;
-- minimal dua kategori HP aktual;
-- pengujian otomatis atau integrasi untuk startup, health check, dan migration.
+IFP Merah Putih dan dua HP nyata memberikan bukti untuk layout layar besar, layout mobile, jaringan, dan koneksi API. Inventaris Redmi Note 7 sudah dilengkapi dengan model, Android, RAM, CPU, dan MIUI.
 
 Pengujian otomatis atau integrasi belum ditambahkan karena tahap ini masih mengikuti validasi manual fondasi. Semua criterion tersebut perlu ditutup pada iterasi validasi berikutnya bersama environment pilot.
 
@@ -119,7 +119,7 @@ Server API menerima `PORT`, `DATABASE_URL`, `CORS_ORIGIN`, dan `NODE_ENV` melalu
 
 - Catatan perangkat berisi model, browser, resolusi, sentuhan, stylus, dan storage.
 - Hasil health check, migration database kosong, serta restore backup pada salinan environment.
-- Bukti pengujian startup dan error path otomatis atau integrasi.
+- Bukti pengujian startup dan error path otomatis atau integrasi: `bun run test` menghasilkan 4 test lulus dan 0 gagal.
 
 ### Definition of done dan rollback
 
